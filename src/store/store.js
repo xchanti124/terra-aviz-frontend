@@ -1,16 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { applyMiddleware } from "redux";
+import locationsReducer from "./locationsListSlice";
 import createSagaMiddleware from "redux-saga";
 
-import { locationsReducer } from "./locationsSlice";
+import locationsSaga from "./sagas";
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
-    reducer: {
-        
-    },
-    preloadedState: {
-    
-    }
-})
+  reducer: {
+    locations: locationsReducer,
+  },
+  middleware: [sagaMiddleware],
+});
+
+sagaMiddleware.run(locationsSaga);
 
 export default store;

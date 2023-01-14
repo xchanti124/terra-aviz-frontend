@@ -1,7 +1,9 @@
+import Locations from "./components/LocationsList";
+
 function App() {
   return (
     <div className="App">
-      KELVIR
+      <Locations />
     </div>
   );
 }
