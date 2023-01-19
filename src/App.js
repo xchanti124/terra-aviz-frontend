@@ -1,11 +1,11 @@
-import Locations from "./components/LocationsList";
+import LocationsList from "./components/LocationsList";
+import SearchBar from "./components/SearchBar";
 
-function App() {
-  return (
-    <div className="App">
-      <Locations />
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <SearchBar />
+    <LocationsList />
+  </div>
+);
 
 export default App;
