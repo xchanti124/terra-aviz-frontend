@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import Location from "./Location";
 
-const Locations = () => {
+const LocationsList = () => {
   const { locations } = useSelector(state => state.locations);
 
   const dispatch = useDispatch();
@@ -21,4 +21,4 @@ const Locations = () => {
   );
 };
 
-export default Locations;
+export default LocationsList;
