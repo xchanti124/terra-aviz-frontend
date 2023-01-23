@@ -4,7 +4,6 @@ import LocationsList from "./components/LocationsList";
 import Location from "./components/Location";
 import Error404 from "./components/Error404";
 import LocationForm from "./components/LocationForm";
-
 import styles from "./styles/app.module.css";
 
 const App = () => (
