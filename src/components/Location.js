@@ -1,4 +1,4 @@
-const Location = location => {
+const Location = ({ location }) => {
   const { name, description, imageLink } = location;
   // likes,gAPI,comments,hashtags,category
   return (

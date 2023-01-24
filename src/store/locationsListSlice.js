@@ -9,11 +9,8 @@ export const locationsListSlice = createSlice({
     fetchSuccess(state, action) {
       state.locations = action.payload;
     },
-    fetchFailed(m) {
-      console.error(m);
-    },
-    fetchByInput(state, action) {
-      state.locations = action.payload;
+    fetchFailed(e) {
+      console.error(e, "FETCH FAILED");
     },
   },
 });
