@@ -7,16 +7,16 @@ const URL = {
     return `${this.base}/locations`;
   },
   byID: function (id) {
-    return `${this.all()}/${id}`;
+    return `${this.base}/search?_id=${id}`;
   },
   byInput: function (input) {
-    return `${this.base()}/search?description=${input}`;
+    return `${this.base}/search?description=${input}`;
   },
   byCategory: function (category) {
-    return `${this.base()}/search?category=${category}`;
+    return `${this.base}/search?category=${category}`;
   },
   byHashTag: function (hashtag) {
-    return `${this.base()}/search?hashtag=${hashtag}`;
+    return `${this.base}/search?hashtag=${hashtag}`;
   },
 };
 
@@ -32,11 +32,9 @@ export function* fetchLocationsList() {
 
 export function* fetchLocation(ID) {
   try {
-    console.log(ID.payload, "id to look for");
     const response = yield call(fetch, URL.byID(ID.payload));
     const location = yield response.json();
     yield put(fetchSuccess(location));
-    // needs to be tested
   } catch (e) {
     yield put(fetchFailed(e.message));
   }
@@ -44,9 +42,8 @@ export function* fetchLocation(ID) {
 
 export function* fetchByInput(value) {
   try {
-    console.log(value.payload, "input for search");
     // console.log(new URLSearchParams(input.payload).toString());  this has = at the end
-    const input = encodeURIComponent(value.payload).replace('%20','+');
+    const input = encodeURIComponent(value.payload).replace("%20", "+");
 
     const response = yield call(fetch, URL.byInput(input));
     const locations = yield response.json();
@@ -58,12 +55,11 @@ export function* fetchByInput(value) {
 
 export function* fetchByCategory(category) {
   try {
-    console.log(category.payload, "category for search");
     const response = yield call(fetch, URL.byCategory(category.payload));
     const locations = yield response.json();
     yield put(fetchSuccess(locations));
   } catch (e) {
-    yield put(fetchFailed(e.message));
+    yield put(fetchFailed(e));
   }
 }
 
