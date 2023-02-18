@@ -31,7 +31,7 @@ function LocationForm() {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 body: new URLSearchParams({
-                    title
+                    title,
                     description,
                     address,
                     imageLink,
