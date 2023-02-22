@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import Location from "./Location";
+import LocationPreview from "./LocationPreview";
 
 const LocationsList = () => {
   const { locations } = useSelector(state => state.locations);
@@ -15,7 +15,7 @@ const LocationsList = () => {
   return (
     <div>
       {locations.map(location => (
-        <Location key={location._id} location={location} />
+        <LocationPreview key={location._id} location={location} />
       ))}
     </div>
   );
