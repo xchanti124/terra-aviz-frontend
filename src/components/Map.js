@@ -19,7 +19,7 @@ export default function Map(props) {
   return (
     <div style={{ height: "400px", width: "600px" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: env.APIkey }}
+        bootstrapURLKeys={{ key: "AIzaSyAWwTZC_aBDPn-ziOH-7WiHigO3aJEFCbs" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals="true"
