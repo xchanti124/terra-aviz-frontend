@@ -1,11 +1,12 @@
 import { call, put, takeEvery } from "redux-saga/effects";
+import { apiUrl, authenticatedFetch } from "../helpers";
 import { fetchFailed, fetchSuccess } from "./locationsListSlice";
 
 import { URL } from "../service/APIs";
 
 export function* fetchLocationsList() {
   try {
-    const response = yield call(fetch, URL.all());
+    const response = yield call(authenticatedFetch, URL.all());
     const locationsList = yield response.json();
     yield put(fetchSuccess(locationsList));
   } catch (e) {
@@ -15,7 +16,7 @@ export function* fetchLocationsList() {
 
 export function* fetchLocation(ID) {
   try {
-    const response = yield call(fetch, URL.byID(ID.payload));
+    const response = yield call(authenticatedFetch, URL.byID(ID.payload));
     const location = yield response.json();
     yield put(fetchSuccess(location));
   } catch (e) {
@@ -28,7 +29,7 @@ export function* fetchByInput(value) {
     // console.log(new URLSearchParams(input.payload).toString());  this has = at the end
     const input = encodeURIComponent(value.payload).replace("%20", "+");
 
-    const response = yield call(fetch, URL.byInput(input));
+    const response = yield call(authenticatedFetch, URL.byInput(input));
     const locations = yield response.json();
     yield put(fetchSuccess(locations));
   } catch (e) {
@@ -38,7 +39,7 @@ export function* fetchByInput(value) {
 
 export function* fetchByCategory(category) {
   try {
-    const response = yield call(fetch, URL.byCategory(category.payload));
+    const response = yield call(authenticatedFetch, URL.byCategory(category.payload));
     const locations = yield response.json();
     yield put(fetchSuccess(locations));
   } catch (e) {
@@ -49,7 +50,7 @@ export function* fetchByCategory(category) {
 export function* fetchByHashtag(hashtag) {
   try {
     console.log(hashtag.payload, "hashtag for search");
-    const response = yield call(fetch, URL.byHashTag(hashtag.payload));
+    const response = yield call(authenticatedFetch, URL.byHashTag(hashtag.payload));
     const locations = yield response.json();
     yield put(fetchSuccess(locations));
   } catch (e) {
