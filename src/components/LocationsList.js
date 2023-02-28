@@ -16,7 +16,7 @@ const LocationsList = () => {
   return (
     <div>
       <SearchBar />
-      
+
       {locations.map(location => (
         <LocationPreview key={location._id} location={location} />
       ))}

@@ -14,12 +14,12 @@ const App = () => (
 
     <Routes>
       <Route path={"/"}>
-        <Route index element={<LocationsList/>} />
-        <Route path={"details"} element={<Location/>} />
+        <Route index element={<LocationsList />} />
+        <Route path={"details"} element={<Location />} />
       </Route>
       {/* <Route path={"/new_location"} element={<LocationForm/>} /> */}
 
-      <Route path={"*"} element={<Error404/>}/>
+      <Route path={"*"} element={<Error404 />} />
     </Routes>
   </>
 );
