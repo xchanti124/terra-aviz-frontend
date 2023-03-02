@@ -1,0 +1,15 @@
+.location_preview {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.location_preview__img {
+    width: 500px;
+}
+
+.location_preview__info {
+    font-size: 18px;
+}

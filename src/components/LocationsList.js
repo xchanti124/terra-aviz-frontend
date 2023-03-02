@@ -14,13 +14,13 @@ const LocationsList = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       <SearchBar />
 
       {locations.map(location => (
         <LocationPreview key={location._id} location={location} />
       ))}
-    </div>
+    </>
   );
 };
 

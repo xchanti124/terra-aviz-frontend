@@ -1,3 +1,3 @@
 window.env = {
-  APIkey: "AIzaSyAWwTZC_aBDPn-ziOH-7WiHigO3aJEFCbs",
+  "APIkey": "AIzaSyC_Y7hhdL90YigtkvcIhCrwHC-nnap0UVI"
 };
