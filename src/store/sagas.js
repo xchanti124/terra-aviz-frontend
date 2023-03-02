@@ -2,24 +2,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { apiUrl, authenticatedFetch } from "../helpers";
 import { fetchFailed, fetchSuccess } from "./locationsListSlice";
 
-const URL = {
-  base: apiUrl,
-  all: function () {
-    return `${this.base}/locations`;
-  },
-  byID: function (id) {
-    return `${this.base}/search?_id=${id}`;
-  },
-  byInput: function (input) {
-    return `${this.base}/search?description=${input}`;
-  },
-  byCategory: function (category) {
-    return `${this.base}/search?category=${category}`;
-  },
-  byHashTag: function (hashtag) {
-    return `${this.base}/search?hashtag=${hashtag}`;
-  },
-};
+import { URL } from "../service/APIs";
 
 export function* fetchLocationsList() {
   try {
@@ -29,7 +12,7 @@ export function* fetchLocationsList() {
   } catch (e) {
     yield put(fetchFailed(e.message));
   }
-}
+};
 
 export function* fetchLocation(ID) {
   try {
@@ -39,7 +22,7 @@ export function* fetchLocation(ID) {
   } catch (e) {
     yield put(fetchFailed(e.message));
   }
-}
+};
 
 export function* fetchByInput(value) {
   try {
@@ -52,7 +35,7 @@ export function* fetchByInput(value) {
   } catch (e) {
     yield put(fetchFailed(e.message));
   }
-}
+};
 
 export function* fetchByCategory(category) {
   try {
@@ -62,7 +45,7 @@ export function* fetchByCategory(category) {
   } catch (e) {
     yield put(fetchFailed(e));
   }
-}
+};
 
 export function* fetchByHashtag(hashtag) {
   try {
@@ -73,7 +56,7 @@ export function* fetchByHashtag(hashtag) {
   } catch (e) {
     yield put(fetchFailed(e.message));
   }
-}
+};
 
 // bottom code should be at the end
 export default function* locationsSaga() {
@@ -82,4 +65,4 @@ export default function* locationsSaga() {
   yield takeEvery("FILTER_BY_INPUT", fetchByInput);
   yield takeEvery("FILTER_BY_CATEGORY", fetchByCategory);
   yield takeEvery("FILTER_BY_HASHTAG", fetchByHashtag);
-}
+};
