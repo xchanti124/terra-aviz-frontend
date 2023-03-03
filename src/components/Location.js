@@ -1,7 +1,11 @@
+import { useLocation } from "react-router-dom";
 import Map from "./Map";
 
-const Location = ({ location }) => {
-  const { title, description, imageLink, coords } = location;
+const Location = () => {
+  const { state } = useLocation();
+
+  const { title, description, imageLink, coords } = state;
+
   // likes,gAPI,comments,hashtags,category
   return (
     <div>

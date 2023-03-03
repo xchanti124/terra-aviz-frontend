@@ -22,7 +22,7 @@ export default function Map(props) {
         bootstrapURLKeys={{ key: env.APIkey }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
-        yesIWantToUseGoogleMapApiInternals="true"
+        yesIWantToUseGoogleMapApiInternals={true}
       >
         {/* <LocationMarker
           text={title}
