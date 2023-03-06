@@ -1,7 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+	--font-primary: "Roboto",Helvetica Neue,Helvetica,sans-serif;
+	--font-secondary: "Montserrat",Helvetica Neue,Helvetica,sans-serif;
+	--black-90: #1A1D26;
+    --black-80: #2C303C;
+    --black-70: #3F4451;
+	--gray-50: #515767;
+    --gray-30: #6F7480;
+    --gray-20: #9297A1;
+    --gray-15: #D3D7DC;
+    --gray-10: #E4E7EB;
+    --gray-05: #e8e8e8;
+    --white-00: #ffffff;
+	--blue-80: #033493;
+	--font-l: 2rem;
+	--font-m: 1.5rem;
+	--font-s: .9rem:
+}
+
 *, *::before, *::after {
 	box-sizing: border-box;
+	font-family: var(--font-primary);
+	color: var(--black-90);
 }
 
 * {
 	margin: 0;
 }
+
+html {
+	-ms-overflow-style: none; 
+	scrollbar-width: none; 
+	background-color: var(--gray-05);
+}
+
+html::-webkit-scrollbar {
+	display: none;
+}
+  

@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 
-import styles from "../styles/location_preview.module.css";
+import styles from "../styles/locationPreview.module.css";
 
 const LocationPreview = ({ location }) => {
   const { title, description, imageLink } = location;
 
   return (
-    <div className={styles.location_preview}>
-      <img className={styles.location_preview__img} src={imageLink} alt={title} />
-      <div className={styles.location_preview__info}>
+    <div className={styles.locationPreview}>
+      <div className={styles.locationPreviewImg}>
+        <img src={imageLink} alt={title} />
+      </div>
+      <div className={styles.locationPreviewInfo}>
         <h2>{title}</h2>
         <p>{description}</p>
         <Link to={"details"} state={location}>
-          <button>SHOW MORE</button>
+          Read more...
         </Link>
       </div>
     </div>

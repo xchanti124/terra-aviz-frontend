@@ -1,16 +1,28 @@
+@import "./index.module.css";
+
 .navigation {
     width: 100%;
-    background-color: aliceblue;
+    height: 5rem;
+    background-color: var(--gray-05);
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     position: fixed;
     top: 0;
 }
 
 .navigation a {
-    margin: 2rem;
+    padding: .5rem 0.75rem;
     text-decoration: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 4px var(--gray-05);
+}
+
+a:hover,
+a:active {
+    border-bottom: solid 4px var(--gray-50);
 }
 
 .main {

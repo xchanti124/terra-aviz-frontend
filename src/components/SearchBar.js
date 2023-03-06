@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import styles from "../styles/search_bar.module.css";
+import styles from "../styles/searchBar.module.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -19,9 +19,9 @@ const SearchBar = () => {
 
   return (
     <>
-      <form className={styles.search_form} onSubmit={onFormSubmit}>
-        <input className={styles.search_bar} type="search" placeholder="Type here..." />
-        <button className={styles.search_button}>Search</button>
+      <form className={styles.searchForm} onSubmit={onFormSubmit}>
+        <input className={styles.searchBar} type="search" placeholder="Type here..." />
+        <button className={styles.searchButton}>Search</button>
 
         {/* <label htmlFor="categories">Filter by category:</label>
 
