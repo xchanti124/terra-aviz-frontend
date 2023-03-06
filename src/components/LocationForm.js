@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { authenticatedFetch } from "../helpers";
 
 function LocationForm() {
   const [title, setTitle] = useState("");
@@ -25,7 +26,7 @@ function LocationForm() {
 
     if (validate()) {
       console.log("Submitting form with:", { title, description, address, hashtags, category, imageLink });
-      let res = await fetch("http://localhost:3000/api/locations", {
+      let res = authenticatedFetch("http://localhost:3000/api/locations", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
