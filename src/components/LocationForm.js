@@ -26,7 +26,7 @@ function LocationForm() {
 
     if (validate()) {
       console.log("Submitting form with:", { title, description, address, hashtags, category, imageLink });
-      let res = authenticatedFetch("http://localhost:3000/api/locations", {
+      let res = await authenticatedFetch("http://localhost:3000/api/locations", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
