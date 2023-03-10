@@ -1,5 +1,5 @@
 const Error404 = () => {
-  return <div>Ups...something went wrong!</div>;
+  return <>Ups...something went wrong!</>;
 };
 
 export default Error404;

@@ -1,0 +1,28 @@
+.location {
+    width: 80%;
+    margin-inline: auto;
+    margin-top: 6rem;
+}
+
+.location h2 {
+    font-family: var(--font-secondary);
+    font-size: var(--font-l);
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+
+.location p {
+    font-family: var(--font-secondary);
+    font-size: var(--font-m);
+    margin-bottom: .5rem;
+}
+
+.location img {
+    display: block;
+    width: 100%;
+}
+
+.locationMap {
+    background-color: none;
+    margin-inline: auto;
+}

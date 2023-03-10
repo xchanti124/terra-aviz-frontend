@@ -1,0 +1,48 @@
+.locationPreview {
+    height: 276px;
+    max-width: 976px;
+    display: flex;
+    overflow: hidden;
+    margin-inline: auto;
+    margin-bottom: 2rem;
+    box-shadow: rgb(61 56 85 / 20%) 0px 0px 10px 0px;
+    border-radius: 0.5rem;
+}
+
+.locationPreviewImg {
+    height: 276px;
+    max-width: 336px;
+    min-width: 336px;
+}
+
+.locationPreviewImg img{
+    height: 100%;
+    width: 100%;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    object-fit: cover;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.locationPreviewInfo {
+    padding: 1rem 1rem 1rem 2rem;
+}
+
+.locationPreviewInfo h2 {
+    font-size: var(--font-m);
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+
+.locationPreviewInfo p,
+.locationPreviewInfo a {
+    font-family: var(--font-primary);
+    font-size: var(--font-s);
+    margin-bottom: .5rem;
+    text-decoration: none;
+}
+
+.locationPreviewInfo a {
+    color: var(--blue-80);
+    font-weight: bold;
+}

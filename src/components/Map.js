@@ -1,6 +1,8 @@
 import GoogleMapReact from "google-map-react";
 import env from "react-dotenv";
 
+import styles from "../styles/location.module.css";
+
 const LocationMarker = ({ text }) => {
   return <div>{text}</div>;
 };
@@ -17,7 +19,7 @@ export default function Map(props) {
   };
 
   return (
-    <div style={{ height: "400px", width: "600px" }}>
+    <div className={styles.locationMap} style={{ width: "80%", height: "200px" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: env.APIkey }}
         defaultCenter={defaultProps.center}
