@@ -26,6 +26,30 @@ const authenticate = async (email, password) => {
   localStorage.setItem("refreshToken", responseJson.refreshToken);
 };
 
+const isAuthenticated = () => {
+  const localStorageAuthToken = localStorage.getItem("authToken");
+  const localStorageRefreshToken = localStorage.getItem("refreshToken");
+
+  if (!localStorageAuthToken || !localStorageRefreshToken) {
+    return false;
+  }
+
+  try {
+    const parsedAuth = jwtDecode(localStorageAuthToken);
+    const parsedRefresh = jwtDecode(localStorageRefreshToken);
+    const currentTime = Math.floor(Date.now() / 1000) + 30;
+
+    return !(currentTime > parsedAuth.exp && currentTime > parsedRefresh.exp);
+  } catch (e) {
+    return false;
+  }
+};
+
+const logout = () => {
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("refreshToken");
+};
+
 // Function that ensures that the tokens in local storage (if any) are refreshed.
 // If auth token and refresh tokens don't exist in the local storage, does nothing. (User is unauthenticated)
 // If the auth token and refresh tokens exist and both haven't expired, does nothing. (User is authenticated)
@@ -67,13 +91,11 @@ const ensureTokens = async () => {
 
       // If both auth and refresh tokens have expired
       if (currentTime > parsedAuth.exp && currentTime > parsedRefresh.exp) {
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("refreshToken");
+        logout();
       }
     } catch {
       // If refresh or auth tokens are malformed (jwtDecode will throw)
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("refreshToken");
+      logout();
     }
   }
 };
@@ -99,4 +121,4 @@ const authenticatedFetch = async (url, options) => {
   return await fetch(url, { ...options, headers: finalHeaders });
 };
 
-export { authenticate, authenticatedFetch, apiUrl };
+export { authenticate, isAuthenticated, logout, authenticatedFetch, apiUrl };
