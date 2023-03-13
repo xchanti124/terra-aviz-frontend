@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { authenticate } from "../helpers";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -28,23 +28,6 @@ function Login() {
       } catch (e) {
         setAuthError(e.message);
       }
-
-      // console.log("Submitting form with:", { title, description, address, hashtags, category, imageLink });
-      // let res = await authenticatedFetch("http://localhost:3000/api/locations", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/x-www-form-urlencoded",
-      //   },
-      //   body: new URLSearchParams({
-      //     title,
-      //     description,
-      //     address,
-      //     imageLink,
-      //     hashtags,
-      //     category,
-      //   }),
-      // });
-      // // Additional functionality to handle form submission can be added here
     }
   };
 
@@ -65,8 +48,10 @@ function Login() {
       {authError !== "" && <p className="error">{authError}</p>}
 
       <button type="submit">Login</button>
+      <NavLink to={"/register"}> Sign Up </NavLink>
     </form>
   );
 }
 
 export default Login;
+

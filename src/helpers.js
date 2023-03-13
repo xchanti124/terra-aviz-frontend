@@ -121,4 +121,33 @@ const authenticatedFetch = async (url, options) => {
   return await fetch(url, { ...options, headers: finalHeaders });
 };
 
-export { authenticate, isAuthenticated, logout, authenticatedFetch, apiUrl };
+const register = async (username, email, password, repeatPassword) => {
+  try {
+    const response = await fetch(`${apiUrl}/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+        repeatPassword,
+      }),
+    });
+    const responseJson = await response.json();
+
+    if ("validationErrors" in responseJson) {
+      throw new Error(responseJson.validationErrors[0].msg);
+    }
+
+    if ("errors" in responseJson) {
+      throw new Error(responseJson.errors[0]);
+    }
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+export { authenticate, isAuthenticated, register, logout, authenticatedFetch, apiUrl };
+

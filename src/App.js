@@ -5,6 +5,7 @@ import Location from "./components/Location";
 import Error404 from "./components/Error404";
 import LocationForm from "./components/LocationForm";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 import styles from "./styles/app.module.css";
 import { useEffect, useState } from "react";
@@ -48,6 +49,7 @@ const App = () => {
             <Route path={"details"} element={<Location />} />
             <Route path={"location_form"} element={<LocationForm />} />
             <Route path={"login"} element={<Login />} />
+            <Route path={"register"} element={<Register />} />
           </Route>
           {/* <Route path={"/new_location"} element={<LocationForm/>} /> */}
           <Route path={"*"} element={<Error404 />} />
@@ -58,3 +60,4 @@ const App = () => {
 };
 
 export default App;
+
