@@ -1,3 +1,5 @@
+@import "./index.module.css";
+
 .locationPreview {
     height: 276px;
     max-width: 976px;
@@ -31,7 +33,7 @@
 .locationPreviewInfo h2 {
     font-size: var(--font-m);
     margin-bottom: .5rem;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .locationPreviewInfo p,
@@ -44,5 +46,27 @@
 
 .locationPreviewInfo a {
     color: var(--blue-80);
-    font-weight: bold;
+}
+
+.btnContainer {
+    max-width: 976px;
+    display: flex;
+    justify-content: space-between;
+    margin-inline: auto;
+    margin-bottom: 2rem;
+}
+
+.prevBtn,
+.nextBtn {
+    width: 138px;
+    cursor: pointer;
+	color: #090909;
+	padding: 0.9em 1.9em;
+	font-size: var(--font-s);
+	border-radius: 0.5em;
+	background: #e8e8e8;
+	border: 1px solid #e8e8e8;
+	transition: all .3s;
+	box-shadow: 6px 6px 12px #c5c5c5,
+				-6px -6px 12px #ffffff;
 }

@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import LocationPreview from "./LocationPreview";
 import SearchBar from "./SearchBar";
 
+import styles from "../styles/locationPreview.module.css";
+
 const LocationsList = () => {
   const { locations } = useSelector(state => state.locations);
 
@@ -20,6 +22,11 @@ const LocationsList = () => {
       {locations.map(location => (
         <LocationPreview key={location._id} location={location} />
       ))}
+
+      <div className={styles.btnContainer}>
+        <button className={styles.prevBtn}>PREVIOUS</button>
+        <button className={styles.nextBtn}>NEXT</button>
+      </div>
     </>
   );
 };

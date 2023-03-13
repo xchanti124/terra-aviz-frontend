@@ -1,3 +1,5 @@
+@import "./index.module.css";
+
 .searchForm {
 	margin-bottom: 2rem;
 	margin-top: 6rem;

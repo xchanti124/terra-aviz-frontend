@@ -12,6 +12,7 @@
 }
 
 .navigation a {
+    font-size: var(--font-m);
     padding: .5rem 0.75rem;
     text-decoration: none;
     cursor: pointer;
@@ -20,8 +21,8 @@
     border-bottom: solid 4px var(--gray-05);
 }
 
-a:hover,
-a:active {
+.navigation a:hover,
+.navigation a:active {
     border-bottom: solid 4px var(--gray-50);
 }
 

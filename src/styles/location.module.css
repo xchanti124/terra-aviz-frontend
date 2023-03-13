@@ -1,14 +1,16 @@
+@import "./index.module.css";
+
 .location {
     width: 80%;
     margin-inline: auto;
-    margin-top: 6rem;
+    margin-top: 7rem;
 }
 
 .location h2 {
     font-family: var(--font-secondary);
     font-size: var(--font-l);
     margin-bottom: .5rem;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .location p {
@@ -25,4 +27,37 @@
 .locationMap {
     background-color: none;
     margin-inline: auto;
+    filter: grayscale(1);
 }
+
+.marker  {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    /* Set the marker color here */
+    background: #aa3300;
+
+    display: inline-block;
+    border-bottom-right-radius: 0;
+    position: relative;
+    transform: rotate(45deg);
+
+    /* optional fanciness */
+    border: 1px solid #881100;
+}
+
+.marker::before {
+    content: "";
+    background: white;
+    width: 50%;
+    height: 50%;
+    border-radius: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    /* optional fanciness */
+    box-shadow: 0.1rem 0.1rem 0.2rem 0.1rem rgba(0, 0, 0, 0.1);
+}
+    

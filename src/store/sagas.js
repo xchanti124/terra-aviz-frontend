@@ -4,9 +4,9 @@ import { fetchFailed, fetchSuccess } from "./locationsListSlice";
 
 import { URL } from "../service/APIs";
 
-export function* fetchLocationsList() {
+export function* fetchLocationsList(page) {
   try {
-    const response = yield call(authenticatedFetch, URL.all());
+    const response = yield call(authenticatedFetch, URL.all(page));
     const locationsList = yield response.json();
     yield put(fetchSuccess(locationsList));
   } catch (e) {
@@ -26,7 +26,6 @@ export function* fetchLocation(ID) {
 
 export function* fetchByInput(value) {
   try {
-    // console.log(new URLSearchParams(input.payload).toString());  this has = at the end
     const input = encodeURIComponent(value.payload).replace("%20", "+");
 
     const response = yield call(authenticatedFetch, URL.byInput(input));
