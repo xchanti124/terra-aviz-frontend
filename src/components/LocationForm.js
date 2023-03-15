@@ -5,7 +5,6 @@ function LocationForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
-  const [hashtags, setHashtags] = useState([]);
   const [imageLink, setImageLink] = useState([]);
   const [category, setCategory] = useState([]);
   const [errors, setErrors] = useState([]);
@@ -15,7 +14,6 @@ function LocationForm() {
     if (!title) formErrors.push("Title is required");
     if (!description) formErrors.push("Description is required");
     if (!address) formErrors.push("Address is required");
-    if (!hashtags) formErrors.push("Hashtags are required");
     if (!category) formErrors.push("Category is required");
     if (!imageLink) formErrors.push("imageLink is required");
     return formErrors.length === 0;
@@ -25,7 +23,7 @@ function LocationForm() {
     event.preventDefault();
 
     if (validate()) {
-      console.log("Submitting form with:", { title, description, address, hashtags, category, imageLink });
+      console.log("Submitting form with:", { title, description, address, category, imageLink });
       let res = await authenticatedFetch("http://localhost:3000/api/locations", {
         method: "POST",
         headers: {
@@ -36,7 +34,6 @@ function LocationForm() {
           description,
           address,
           imageLink,
-          hashtags,
           category,
         }),
       });
@@ -63,12 +60,6 @@ function LocationForm() {
         <input type="text" value={address} onChange={({ target: { value } }) => setAddress(value)} required />
       </label>
       {errors.includes("Address is required") && <p className="error">Address is required</p>}
-
-      <label>
-        Hashtags:
-        <input type="text" value={hashtags} onChange={({ target: { value } }) => setHashtags(value)} required />
-      </label>
-      {errors.includes("Hashtags are required") && <p className="error">Hashtags are required</p>}
 
       <label>
         imageLink:
