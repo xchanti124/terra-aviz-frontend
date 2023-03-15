@@ -1,7 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { authenticatedFetch } from "../helpers";
 import { fetchFailed, fetchSuccess } from "./locationsListSlice";
-
 import { URL } from "../service/APIs";
 
 export function* fetchLocationsList(page) {
