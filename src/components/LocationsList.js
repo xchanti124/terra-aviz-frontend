@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import LocationPreview from "./LocationPreview";
 import SearchBar from "./SearchBar";
@@ -7,13 +8,40 @@ import SearchBar from "./SearchBar";
 import styles from "../styles/locationPreview.module.css";
 
 const LocationsList = () => {
-  const { locations } = useSelector(state => state.locations);
+  const { locations, maxPage } = useSelector(state => state.locations);
+  const [searchParams, setSearchParams] = useSearchParams([["page", "1"]]);
+  const [page, setPage] = useState(1);
 
   const dispatch = useDispatch();
 
+  console.log(searchParams);
   useEffect(() => {
-    dispatch({ type: "LOCATIONS_REQUESTED" });
-  }, [dispatch]);
+    if (!searchParams.get("page")) {
+      setPage(1);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    dispatch({ type: "LOCATIONS_REQUESTED", payload: searchParams.get("page") ?? 1 });
+    console.log(searchParams.get("page"));
+  }, [dispatch, searchParams]);
+
+  const isFirstPage = page <= 1;
+  const isLastPage = page >= maxPage;
+
+  const onPrevBtnClick = () => {
+    if (!isFirstPage) {
+      setSearchParams([["page", page - 1]]);
+      setPage(page - 1);
+    }
+  };
+
+  const onNextBtnClick = () => {
+    if (!isLastPage) {
+      setSearchParams([["page", page + 1]]);
+      setPage(page + 1);
+    }
+  };
 
   return (
     <>
@@ -24,8 +52,12 @@ const LocationsList = () => {
       ))}
 
       <div className={styles.btnContainer}>
-        <button className={styles.prevBtn}>PREVIOUS</button>
-        <button className={styles.nextBtn}>NEXT</button>
+        <button className={styles.prevBtn} disabled={isFirstPage} onClick={onPrevBtnClick}>
+          PREVIOUS
+        </button>
+        <button className={styles.nextBtn} disabled={isLastPage} onClick={onNextBtnClick}>
+          NEXT
+        </button>
       </div>
     </>
   );

@@ -4,10 +4,12 @@ export const locationsListSlice = createSlice({
   name: "locations",
   initialState: {
     locations: [],
+    maxPage: 0,
   },
   reducers: {
     fetchSuccess(state, action) {
-      state.locations = action.payload;
+      state.locations = action.payload.result;
+      state.maxPage = action.payload.maxPage.maxPage;
     },
     fetchFailed(e) {
       console.error(e, "FETCH FAILED");
