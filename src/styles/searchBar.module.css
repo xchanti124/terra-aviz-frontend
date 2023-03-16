@@ -1,3 +1,5 @@
+@import "./index.module.css";
+
 .searchForm {
 	margin-bottom: 2rem;
 	margin-top: 6rem;
@@ -22,6 +24,10 @@
 
 .searchBar:hover {
 	outline: 1px solid lightgrey;
+}
+
+.dropDown {
+	
 }
 
 .searchButton {

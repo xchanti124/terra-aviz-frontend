@@ -1,36 +1,25 @@
 import GoogleMapReact from "google-map-react";
-import env from "react-dotenv";
 
 import styles from "../styles/location.module.css";
 
 const LocationMarker = ({ text }) => {
-  return <div>{text}</div>;
+  return <div className={styles.marker}></div>;
 };
 
 export default function Map(props) {
-  // const {lat, lng} = props.coords;
-  // const {title} = props.title;
-  const defaultProps = {
-    center: {
-      lat: 51.2281329,
-      lng: 6.7184408,
-    },
-    zoom: 14,
-  };
+  const lng = props.coords.coordinates[0];
+  const lat = props.coords.coordinates[1];
+  const title = props.name;
 
   return (
     <div className={styles.locationMap} style={{ width: "80%", height: "200px" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: env.APIkey }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
+        defaultCenter={[lat, lng]}
+        defaultZoom={14}
         yesIWantToUseGoogleMapApiInternals={true}
       >
-        {/* <LocationMarker
-          text={title}
-          lat={lat}
-          lng={lng}
-          /> */}
+        <LocationMarker text={title} lat={lat} lng={lng} />
       </GoogleMapReact>
     </div>
   );

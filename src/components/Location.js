@@ -6,9 +6,8 @@ import styles from "../styles/location.module.css";
 
 const Location = () => {
   const { state } = useLocation();
-  const { title, description, imageLink, coords } = state;
+  const { title, description, imageLink, loc } = state;
 
-  // likes,gAPI,comments,hashtags,category
   return (
     <>
       <div className={styles.location}>
@@ -17,7 +16,7 @@ const Location = () => {
         <img src={imageLink} alt={title} />
       </div>
 
-      <Map coords={coords} name={title} />
+      <Map coords={loc} name={title} />
     </>
   );
 };
