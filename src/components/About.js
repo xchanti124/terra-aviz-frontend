@@ -12,8 +12,6 @@ const About = () => {
       </p>
       <p>Happy Discovering!!</p>
       <p>-Chantal,Olya,Dominik and Meera.</p>
-      <img src="/path/to/image" alt="Image description" />
-      <button aria-label="Click me">Click me</button>
     </div>
   );
 };

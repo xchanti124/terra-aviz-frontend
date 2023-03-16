@@ -19,10 +19,6 @@ const App = () => (
       <Routes>
         <Route path={"/"} element={<LocationsList />} />
         <Route path={"/details/:id"} element={<Location />} />
-        <Route path={"/location_form"} element={<LocationForm />} />
-        <Route path={"/about"} element={<About />} />
-        <Route path={"/login"} element={<div>Login page</div>} />
-        <Route path={"/404"} element={<Error404 />} />
         <Route path={"*"} element={<Error404 />} />
       </Routes>
     </div>
