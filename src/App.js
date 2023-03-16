@@ -1,5 +1,7 @@
 import { NavLink, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 
+import { isAuthenticated, logout } from "./helpers";
 import LocationsList from "./components/LocationsList";
 import Location from "./components/Location";
 import Error404 from "./components/Error404";
@@ -8,8 +10,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 import styles from "./styles/app.module.css";
-import { useEffect, useState } from "react";
-import { isAuthenticated, logout } from "./helpers";
 
 const App = () => {
   const [isLoggedIn, setLoggedIn] = useState(isAuthenticated());
@@ -51,7 +51,6 @@ const App = () => {
             <Route path={"login"} element={<Login />} />
             <Route path={"register"} element={<Register />} />
           </Route>
-          {/* <Route path={"/new_location"} element={<LocationForm/>} /> */}
           <Route path={"*"} element={<Error404 />} />
         </Routes>
       </div>
@@ -60,4 +59,3 @@ const App = () => {
 };
 
 export default App;
-

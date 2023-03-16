@@ -2,7 +2,7 @@ import GoogleMapReact from "google-map-react";
 
 import styles from "../styles/location.module.css";
 
-const LocationMarker = ({ text }) => {
+const LocationMarker = () => {
   return <div className={styles.marker}></div>;
 };
 

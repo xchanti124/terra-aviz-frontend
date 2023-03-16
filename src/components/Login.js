@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { authenticate } from "../helpers";
 import { useNavigate, NavLink } from "react-router-dom";
+
+import { authenticate } from "../helpers";
+
+import styles from "../styles/form.module.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -32,26 +35,38 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label>
-        Email:
-        <input type="email" value={email} onChange={({ target: { value } }) => setEmail(value)} required />
+        <input
+          placeholder="Email..."
+          type="email"
+          value={email}
+          onChange={({ target: { value } }) => setEmail(value)}
+          required
+        />
       </label>
       {errors.includes("Email is required") && <p className="error">Email is required</p>}
 
       <label>
-        Password:
-        <input type="password" value={password} onChange={({ target: { value } }) => setPassword(value)} required />
+        <input
+          placeholder="Password..."
+          type="password"
+          value={password}
+          onChange={({ target: { value } }) => setPassword(value)}
+          required
+        />
       </label>
       {errors.includes("Password is required") && <p className="error">Password is required</p>}
 
       {authError !== "" && <p className="error">{authError}</p>}
 
       <button type="submit">Login</button>
-      <NavLink to={"/register"}> Sign Up </NavLink>
+      <NavLink className={styles.signup} to={"/register"}>
+        {" "}
+        Sign Up{" "}
+      </NavLink>
     </form>
   );
 }
 
 export default Login;
-

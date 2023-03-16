@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+
 import { authenticatedFetch } from "../helpers";
+
+import styles from "../styles/form.module.css";
 
 function LocationForm() {
   const [title, setTitle] = useState("");
@@ -42,35 +45,50 @@ function LocationForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label>
-        Title:
-        <input type="text" value={title} onChange={({ target: { value } }) => setTitle(value)} required />
+        <input placeholder={"Title..."} value={title} onChange={({ target: { value } }) => setTitle(value)} required />
       </label>
       {errors.includes("Title is required") && <p className="error">Title is required</p>}
 
       <label>
-        Description:
-        <input type="text" value={description} onChange={({ target: { value } }) => setDescription(value)} required />
+        <input
+          placeholder={"Description..."}
+          value={description}
+          onChange={({ target: { value } }) => setDescription(value)}
+          required
+        />
       </label>
       {errors.includes("Description is required") && <p className="error">Description is required</p>}
 
       <label>
-        Address:
-        <input type="text" value={address} onChange={({ target: { value } }) => setAddress(value)} required />
+        <input
+          placeholder={"Address..."}
+          value={address}
+          onChange={({ target: { value } }) => setAddress(value)}
+          required
+        />
       </label>
       {errors.includes("Address is required") && <p className="error">Address is required</p>}
 
       <label>
-        imageLink:
-        <input type="text" value={imageLink} onChange={({ target: { value } }) => setImageLink(value)} required />
+        <input
+          placeholder={"Image link..."}
+          value={imageLink}
+          onChange={({ target: { value } }) => setImageLink(value)}
+          required
+        />
       </label>
 
       {errors.includes("ImageLink is required") && <p className="error">ImageLink is required</p>}
 
       <label>
-        category:
-        <input type="text" value={category} onChange={({ target: { value } }) => setCategory(value)} required />
+        <input
+          placeholder={"Category..."}
+          value={category}
+          onChange={({ target: { value } }) => setCategory(value)}
+          required
+        />
       </label>
       {errors.includes("Category is required") && <p className="error">Category is required</p>}
 

@@ -6,10 +6,10 @@ export const URL = {
   byID: function (id) {
     return `${this.base}/search?_id=${id}`;
   },
-  byInput: function (input) {
+  byInput: function (page, input) {
     return `${this.base}/page?pageNumber=${page}&search=${input}`;
   },
-  byCategory: function (category) {
+  byCategory: function (page, category) {
     return `${this.base}/page?pageNumber=${page}&category=${category}`;
   },
 };
