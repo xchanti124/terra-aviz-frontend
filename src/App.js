@@ -1,12 +1,11 @@
 import { NavLink, Route, Routes } from "react-router-dom";
-
 import LocationsList from "./components/LocationsList";
 import Location from "./components/Location";
 import Error404 from "./components/Error404";
 import LocationForm from "./components/LocationForm";
 import Login from "./components/Login";
 import Register from "./components/Register";
-
+import About from "./components/About";
 import styles from "./styles/app.module.css";
 import { useEffect, useState } from "react";
 import { isAuthenticated, logout } from "./helpers";
@@ -58,6 +57,7 @@ const App = () => {
     </>
   );
 };
+
 
 export default App;
 
