@@ -8,7 +8,6 @@ const SearchBar = ({ page }) => {
   const onInputSubmit = e => {
     e.preventDefault();
     const input = e.target[0].value;
-    console.log(input, page);
     dispatch({ type: "FILTER_BY_INPUT", payload: { page, input } });
   };
 

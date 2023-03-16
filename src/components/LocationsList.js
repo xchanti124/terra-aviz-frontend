@@ -15,6 +15,7 @@ const LocationsList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(123);
     if (!searchParams.get("page")) {
       setPage(1);
     }
