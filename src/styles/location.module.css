@@ -7,14 +7,14 @@
 }
 
 .location h2 {
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     font-size: var(--font-l);
     margin-bottom: .5rem;
     font-weight: normal;
 }
 
 .location p {
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     font-size: var(--font-m);
     margin-bottom: .5rem;
 }
@@ -34,7 +34,6 @@
     width: 2rem;
     height: 2rem;
     border-radius: 2rem;
-    /* Set the marker color here */
     background: #aa3300;
 
     display: inline-block;
@@ -42,7 +41,6 @@
     position: relative;
     transform: rotate(45deg);
 
-    /* optional fanciness */
     border: 1px solid #881100;
 }
 
@@ -57,7 +55,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
 
-    /* optional fanciness */
     box-shadow: 0.1rem 0.1rem 0.2rem 0.1rem rgba(0, 0, 0, 0.1);
 }
     

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { authenticatedFetch, register } from "../helpers";
 import { useNavigate } from "react-router-dom";
+
+import { authenticatedFetch, register } from "../helpers";
+
+import styles from "../styles/form.module.css";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -36,25 +39,39 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label>
-        Username
-        <input type="text" value={username} onChange={({ target: { value } }) => setUsername(value)} required />
+        <input
+          placeholder="Username..."
+          value={username}
+          onChange={({ target: { value } }) => setUsername(value)}
+          required
+        />
       </label>
       {errors.includes("Username is required") && <p className="error">Username is required</p>}
       <label>
-        Email
-        <input type="email" value={email} onChange={({ target: { value } }) => setEmail(value)} required />
+        <input
+          placeholder="Email..."
+          type="email"
+          value={email}
+          onChange={({ target: { value } }) => setEmail(value)}
+          required
+        />
       </label>
       {errors.includes("Email is required") && <p className="error">Email is required</p>}
       <label>
-        Password
-        <input type="password" value={password} onChange={({ target: { value } }) => setPassword(value)} required />
+        <input
+          placeholder="Password..."
+          type="password"
+          value={password}
+          onChange={({ target: { value } }) => setPassword(value)}
+          required
+        />
       </label>
       {errors.includes("Password is required") && <p className="error">Password is required</p>}
       <label>
-        Repeat Password
         <input
+          placeholder="Repeat password..."
           type="password"
           value={repeatPassword}
           onChange={({ target: { value } }) => setRepeatPassword(value)}
@@ -71,4 +88,3 @@ function Register() {
 }
 
 export default Register;
-

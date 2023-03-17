@@ -14,8 +14,8 @@ const LocationsList = () => {
 
   const dispatch = useDispatch();
 
-  console.log(searchParams);
   useEffect(() => {
+    console.log(123);
     if (!searchParams.get("page")) {
       setPage(1);
     }
@@ -23,7 +23,6 @@ const LocationsList = () => {
 
   useEffect(() => {
     dispatch({ type: "LOCATIONS_REQUESTED", payload: searchParams.get("page") ?? 1 });
-    console.log(searchParams.get("page"));
   }, [dispatch, searchParams]);
 
   const isFirstPage = page <= 1;
@@ -45,7 +44,7 @@ const LocationsList = () => {
 
   return (
     <>
-      <SearchBar />
+      <SearchBar page={page} />
 
       {locations.map(location => (
         <LocationPreview key={location._id} location={location} />

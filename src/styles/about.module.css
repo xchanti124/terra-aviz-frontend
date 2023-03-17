@@ -1,0 +1,19 @@
+@import "./index.module.css";
+
+.about {
+    width: 60%;
+    margin-inline: auto;
+    margin-top: 9rem;
+    text-align: justify;
+    font-size: var(	--font-m);
+}
+
+.about h2 {
+    font-weight: 400;
+    padding: 1rem 0;
+}
+
+.about p {
+    font-style: italic;
+    padding: .3rem;
+}

@@ -1,15 +1,16 @@
 @import "./index.module.css";
 
-.searchForm {
-	margin-bottom: 2rem;
-	margin-top: 6rem;
-	display: flex;
-	justify-content: center;
-	gap: 2rem;
+.form {
+    width: 60%;
+    margin-inline: auto;
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.searchBar {
-	max-width: 230px;
+.form input {
+    width: 100%;
+    margin: .8rem 0;
 	font-size: 14px;
 	background: #e8e8e8;
 	color: #242424;
@@ -22,14 +23,17 @@
 				-6px -6px 12px #ffffff;
 }
 
-.searchBar:hover {
+.form input:hover {
 	outline: 1px solid lightgrey;
 }
 
-.searchButton {
-	cursor: pointer;
+.form button {
+    width: 30%;
+    cursor: pointer;
 	color: #090909;
 	padding: 0.9em 1.9em;
+    margin-top: 1.2rem;
+    margin-inline: auto;
 	font-size: 1rem;
 	border-radius: 0.5em;
 	background: #e8e8e8;
@@ -39,8 +43,13 @@
 				-6px -6px 12px #ffffff;
 }
 
-.searchButton:active {
+.form button:active {
 	color: #666;
  	box-shadow: inset 4px 4px 12px #c5c5c5,
              inset -4px -4px 12px #ffffff;
+}
+
+.signup {
+	margin-inline: auto;
+	margin-top: 1.2rem;
 }
