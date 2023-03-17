@@ -3,10 +3,48 @@ import { useLocation } from "react-router-dom";
 import Map from "./Map";
 
 import styles from "../styles/location.module.css";
+import { useSelector } from "react-redux";
+import { apiUrl, authenticatedFetch } from "../helpers";
+import { useEffect, useState } from "react";
 
 const Location = () => {
+  const { isLoggedIn } = useSelector(state => state.auth);
+
   const { state } = useLocation();
-  const { title, description, imageLink, loc } = state;
+  const { title, description, imageLink, loc, _id } = state;
+
+  const [comment, setComment] = useState("");
+  const [isLoading, setLoading] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [refetch, setRefetch] = useState(0);
+
+  useEffect(() => {
+    authenticatedFetch(`${apiUrl}/locations/${_id}/comments`)
+      .then(response => response.json())
+      .then(json => {
+        setComments(json);
+      });
+  }, [refetch]);
+
+  const leaveComment = async content => {
+    const response = await authenticatedFetch(`${apiUrl}/locations/${_id}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content }),
+    });
+    const json = await response.json();
+    return json;
+  };
+
+  const onLeaveCommentPressed = () => {
+    setLoading(true);
+    leaveComment(comment).finally(() => {
+      setLoading(false);
+      setRefetch(old => old + 1);
+    });
+  };
 
   return (
     <>
@@ -17,8 +55,28 @@ const Location = () => {
       </div>
 
       <Map coords={loc} name={title} />
+
+      {isLoggedIn && (
+        <>
+          <textarea onChange={({ target: { value } }) => setComment(value)} disabled={isLoading}>
+            {comment}
+          </textarea>
+          <br />
+          <button onClick={onLeaveCommentPressed} disabled={isLoading}>
+            Post Comment
+          </button>
+          <br />
+          {comments.map(comment => (
+            <>
+              <hr />
+              <p>{comment.content}</p>
+            </>
+          ))}
+        </>
+      )}
     </>
   );
 };
 
 export default Location;
+
