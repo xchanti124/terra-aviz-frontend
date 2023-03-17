@@ -1,5 +1,7 @@
+import { apiUrl } from "../helpers";
+
 export const URL = {
-  base: "http://localhost:3000/api",
+  base: apiUrl,
   all: function (page) {
     return `${this.base}/page?pageNumber=${page}`;
   },
@@ -13,3 +15,4 @@ export const URL = {
     return `${this.base}/page?pageNumber=${page}&category=${category}`;
   },
 };
+
