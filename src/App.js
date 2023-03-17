@@ -1,5 +1,5 @@
 import { NavLink, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { isAuthenticated, logout } from "./helpers";
 import LocationsList from "./components/LocationsList";
@@ -11,13 +11,17 @@ import Register from "./components/Register";
 import About from "./components/About";
 
 import styles from "./styles/app.module.css";
+import { loggedIn } from "./store/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
-  const [isLoggedIn, setLoggedIn] = useState(isAuthenticated());
+  const { isLoggedIn } = useSelector(state => state.auth);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setLoggedIn(isAuthenticated());
+      dispatch(loggedIn(isAuthenticated()));
     }, 1000);
 
     return () => {
@@ -34,7 +38,7 @@ const App = () => {
         {!isLoggedIn && <NavLink to={"/login"}> LOGIN </NavLink>}
         {isLoggedIn && (
           <NavLink
-            to="#"
+            to="/"
             onClick={() => {
               logout();
             }}
@@ -62,3 +66,4 @@ const App = () => {
 };
 
 export default App;
+
