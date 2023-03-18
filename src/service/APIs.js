@@ -1,3 +1,5 @@
+import { apiUrl } from "../helpers";
+
 export const URL = {
   base: "http://localhost:3000/api",
   all: function (queryString) {
@@ -7,3 +9,4 @@ export const URL = {
     return `${this.base}/search?_id=${id}`;
   },
 };
+
