@@ -31,17 +31,22 @@ const isAuthenticated = () => {
   const localStorageRefreshToken = localStorage.getItem("refreshToken");
 
   if (!localStorageAuthToken || !localStorageRefreshToken) {
-    return false;
+    return [false];
   }
 
   try {
     const parsedAuth = jwtDecode(localStorageAuthToken);
     const parsedRefresh = jwtDecode(localStorageRefreshToken);
     const currentTime = Math.floor(Date.now() / 1000) + 30;
+    const isLoggedIn = !(currentTime > parsedAuth.exp && currentTime > parsedRefresh.exp);
 
-    return !(currentTime > parsedAuth.exp && currentTime > parsedRefresh.exp);
+    if (!isLoggedIn) {
+      return [false];
+    }
+    
+    return [true, parsedAuth.sub];
   } catch (e) {
-    return false;
+    return [false];
   }
 };
 

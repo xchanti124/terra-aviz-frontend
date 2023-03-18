@@ -11,7 +11,7 @@ import Register from "./components/Register";
 import About from "./components/About";
 
 import styles from "./styles/app.module.css";
-import { loggedIn } from "./store/authSlice";
+import { setLoggedIn, setUserId } from "./store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
@@ -21,13 +21,15 @@ const App = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(loggedIn(isAuthenticated()));
+      const [isLoggedIn, userId] = isAuthenticated();
+      dispatch(setLoggedIn(isLoggedIn));
+      dispatch(setUserId(userId));
     }, 1000);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

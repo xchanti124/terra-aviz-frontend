@@ -8,7 +8,7 @@ import { apiUrl, authenticatedFetch } from "../helpers";
 import { useEffect, useState } from "react";
 
 const Location = () => {
-  const { isLoggedIn } = useSelector(state => state.auth);
+  const { isLoggedIn, userId } = useSelector(state => state.auth);
 
   const { state } = useLocation();
   const { title, description, imageLink, loc, _id } = state;
@@ -22,9 +22,9 @@ const Location = () => {
     authenticatedFetch(`${apiUrl}/locations/${_id}/comments`)
       .then(response => response.json())
       .then(json => {
-        setComments(json);
+        setComments(json.sort((a, b) => (new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1)));
       });
-  }, [refetch]);
+  }, [refetch, _id]);
 
   const leaveComment = async content => {
     const response = await authenticatedFetch(`${apiUrl}/locations/${_id}/comments`, {
@@ -38,9 +38,32 @@ const Location = () => {
     return json;
   };
 
+  const deleteComment = async commentId => {
+    const response = await authenticatedFetch(`${apiUrl}/locations/${_id}/comments/${commentId}`, {
+      method: "DELETE",
+    });
+    const json = await response.json();
+
+    if ("errors" in json) {
+      throw new Error(json.errors[0]);
+    }
+
+    return json;
+  };
+
   const onLeaveCommentPressed = () => {
     setLoading(true);
     leaveComment(comment).finally(() => {
+      setLoading(false);
+      setRefetch(old => old + 1);
+    });
+  };
+
+  const onDeleteCommentPressed = (event, commentId) => {
+    event.preventDefault();
+
+    setLoading(true);
+    deleteComment(commentId).finally(() => {
       setLoading(false);
       setRefetch(old => old + 1);
     });
@@ -70,6 +93,11 @@ const Location = () => {
             <>
               <hr />
               <p>{comment.content}</p>
+              {userId === comment.ownerUser && (
+                <a href="#" onClick={event => onDeleteCommentPressed(event, comment._id)} disabled={isLoading}>
+                  Delete Comment
+                </a>
+              )}
             </>
           ))}
         </>
