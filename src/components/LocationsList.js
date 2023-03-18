@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import LocationPreview from "./LocationPreview";
-import SearchBar from "./SearchBar";
+import SearchForm from "./SearchForm";
 
 import styles from "../styles/locationPreview.module.css";
 
@@ -11,19 +11,25 @@ const LocationsList = () => {
   const { locations, maxPage } = useSelector(state => state.locations);
   const [searchParams, setSearchParams] = useSearchParams([["page", "1"]]);
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState({});
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(123);
     if (!searchParams.get("page")) {
+      setQuery({});
       setPage(1);
     }
   }, [searchParams]);
 
   useEffect(() => {
-    dispatch({ type: "LOCATIONS_REQUESTED", payload: searchParams.get("page") ?? 1 });
-  }, [dispatch, searchParams]);
+    dispatch({ type: "LOCATIONS_REQUESTED", payload: { pageNumber: page, ...query } });
+  }, [dispatch, page, query]);
+
+  const onSearch = params => {
+    setSearchParams([["page", "1"], ...Object.entries(params)]);
+    setQuery(params);
+  };
 
   const isFirstPage = page <= 1;
   const isLastPage = page >= maxPage;
@@ -32,6 +38,7 @@ const LocationsList = () => {
     if (!isFirstPage) {
       setSearchParams([["page", page - 1]]);
       setPage(page - 1);
+      window.scrollTo(0, 0);
     }
   };
 
@@ -39,12 +46,13 @@ const LocationsList = () => {
     if (!isLastPage) {
       setSearchParams([["page", page + 1]]);
       setPage(page + 1);
+      window.scrollTo(0, 0);
     }
   };
 
   return (
     <>
-      <SearchBar page={page} />
+      <SearchForm onSearch={onSearch} />
 
       {locations.map(location => (
         <LocationPreview key={location._id} location={location} />

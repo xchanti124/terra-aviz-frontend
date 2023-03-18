@@ -4,9 +4,12 @@ import { authenticatedFetch } from "../helpers";
 import { fetchFailed, fetchSuccess } from "./locationsListSlice";
 import { URL } from "../service/APIs";
 
-export function* fetchLocationsList(page) {
+export function* fetchLocationsList({ payload }) {
+  const queryString = Object.entries(payload)
+    .map(([key, value]) => `${key}=${value}`)
+    .join("&");
   try {
-    const response = yield call(authenticatedFetch, URL.all(page.payload));
+    const response = yield call(authenticatedFetch, URL.all(queryString));
     const locationsList = yield response.json();
     yield put(fetchSuccess(locationsList));
   } catch (e) {
@@ -24,31 +27,7 @@ export function* fetchLocation(ID) {
   }
 }
 
-export function* fetchByInput({ payload: { input, page } }) {
-  try {
-    const searchInput = encodeURIComponent(input).replaceAll("%20", "+");
-
-    const response = yield call(authenticatedFetch, URL.byInput(page, searchInput));
-    const locations = yield response.json();
-    yield put(fetchSuccess(locations));
-  } catch (e) {
-    yield put(fetchFailed(e.message));
-  }
-}
-
-export function* fetchByCategory({ payload: { page, category } }) {
-  try {
-    const response = yield call(authenticatedFetch, URL.byCategory(page, category));
-    const locations = yield response.json();
-    yield put(fetchSuccess(locations));
-  } catch (e) {
-    yield put(fetchFailed(e));
-  }
-}
-
 export default function* locationsSaga() {
   yield takeEvery("LOCATIONS_REQUESTED", fetchLocationsList);
   yield takeEvery("LOCATION_REQUESTED", fetchLocation);
-  yield takeEvery("FILTER_BY_INPUT", fetchByInput);
-  yield takeEvery("FILTER_BY_CATEGORY", fetchByCategory);
 }
